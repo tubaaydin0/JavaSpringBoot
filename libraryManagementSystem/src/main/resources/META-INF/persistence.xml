@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+    <persistence-unit name="library_management_system" >
+
+        <properties>
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/library_management_system" />
+            <property name="jakarta.persistence.jdbc.user" value="postgres" />
+            <property name="jakarta.persistence.password" value="123" />
+
+            <!-- Hangi sql çalıştığını görmek için -->
+            <property name="hibernate.show_sql" value="true" />
+
+            <!-- Oluşturulan entitiylerin oluşturulup silme işlemleri için.(create-drop) Her program çalıştığında tablı silinip oluşturulur. Tablo oluşturduktan sonra update yapılabilir. -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+
+            <property name="hibernate.connection.password" value="123" />
+
+        </properties>
+    </persistence-unit>
+</persistence>
