@@ -1,5 +1,7 @@
 Library Management System  
 
+ORM ve JPA kullanılarak aşağıda bulunan tablolar Postgresql veritabanında oluşturulup bu tablolara veri ekleme işlemi yapıldı.  
+
 Kitap (Book):  
 id (Benzersiz kitap kimliği)  
 name(Kitap adı)  
