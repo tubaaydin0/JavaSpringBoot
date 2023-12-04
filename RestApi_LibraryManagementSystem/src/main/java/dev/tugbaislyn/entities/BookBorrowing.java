@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+//@ToString
 public class BookBorrowing {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

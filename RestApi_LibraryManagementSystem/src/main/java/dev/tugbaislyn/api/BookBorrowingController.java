@@ -52,7 +52,12 @@ public class BookBorrowingController {
     @PutMapping("/bookborrowing")
     @ResponseStatus(HttpStatus.OK)
     public BookBorrowing update( @RequestBody BookBorrowingUpdateRequest bookBorrowingUpdateRequest){
-        return this.bookBorrowingService.update(this.modelMapper.map(bookBorrowingUpdateRequest,BookBorrowing.class));
+        BookBorrowing bookBorrowing=this.bookBorrowingService.getById(bookBorrowingUpdateRequest.getId());
+        bookBorrowing.setName(bookBorrowingUpdateRequest.getName());
+        bookBorrowing.setBorrowingDate(bookBorrowingUpdateRequest.getBorrowingDate());
+        bookBorrowing.setReturnDate(bookBorrowingUpdateRequest.getReturnDate());
+
+        return this.bookBorrowingService.update(bookBorrowing);
     }
 
     //DELETE

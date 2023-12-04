@@ -51,33 +51,17 @@ public class BookBorrowingManager implements IBookBorrowingService {
 
     @Override //Burada b_book_id be book null geliyor??? Tekrar Bak!
     public BookBorrowing update(BookBorrowing bookBorrowing) {
-        System.out.println(bookBorrowing.getId());
-
         Optional<BookBorrowing> bookBorrowingIdDB=this.bookBorrowingRepo.findById(bookBorrowing.getId()); // Dışardan gelen bookBorrowing in idsi veritabanında var mı bakılır
-        BookBorrowing newBookBorrowing=bookBorrowingIdDB.get();
-        //newBookBorrowing.setId(bookBorrowing.getId());
-        BookBorrowing nbookborrow=bookBorrowingIdDB.get();
-
-        System.out.println("bookBorrowing:"+bookBorrowing.toString());
-        System.out.println(newBookBorrowing.getId());
-        System.out.println(newBookBorrowing.getBook());
-
-        System.out.println(bookBorrowingIdDB.get().getBook().getId());
-       Book book = this.bookService.getById(bookBorrowingIdDB.get().getBook().getId());
-
-
 
         if(bookBorrowingIdDB.isPresent()){ // id sistemde varsa
-            //Book book=bookBorrowingIdDB.get().getBook();
-
-            if (bookBorrowing.getReturnDate() == null) { // Ödünç alınan kitap teslim edildiğinde tarih bilgisi girilir. Bu yüzden kitap stoğunu 1 artırırız.
-
+            Book book=bookBorrowingIdDB.get().getBook();
+            if (bookBorrowing.getReturnDate() != null) { // Ödünç alınan kitap teslim edildiğinde tarih bilgisi girilir. Bu yüzden kitap stoğunu 1 artırırız.
                 book.setStock(book.getStock() + 1);
                 this.bookService.update(book); // Book un stok sayısının değişmesiyle book tablosu yenilendi.
             }
             return this.bookBorrowingRepo.save(bookBorrowing);
         }else{
-           throw new RuntimeException("Sistemde kayıtlı böyle bir ID bulunamamıştır!");
+            throw new RuntimeException("Sistemde kayıtlı böyle bir ID bulunamamıştır!");
         }
     }
 
